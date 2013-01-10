@@ -1,4 +1,4 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Deals extends CI_Controller {
 
@@ -43,8 +43,6 @@ class Deals extends CI_Controller {
         echo $zip;
 
         $data['title'] = 'Budget Buy 101';
-
-        var_dump($_SERVER);
 
         $this->load->model('Deals_model');
 
