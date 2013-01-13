@@ -13,8 +13,8 @@ class Eight_coupons_model extends CI_Model {
 	/**
 	 * Query 8coupons server for list of deals categories
 	 * 
-	 * @return An array of key-value pairs on success execution
-	 * 			otherwise the method returns flase.
+	 * @return An array of key-value pairs of category_id => category_name
+	 *         on successful execution otherwise the method returns flase.
 	 */
 	public function get_all_categories()
 	{
@@ -34,9 +34,30 @@ class Eight_coupons_model extends CI_Model {
 
 	}
 	
+	/**
+	 * Query 8coupons server for list of categories/subcategories
+	 * 
+	 * @return An array of array of the form (category_id => (sub_category_id
+	 *   => sub_category_name, sub_category_id => sub_catg_name))
+	 */
 	public function get_all_subcategories()
 	{
+		$result = array();
+		$response = $this->rest->get('getsubcategory');
+		if (!is_array($response)) return FALSE;
+		if (count($response) < 1) return FALSE;
 		
+		foreach ($response as $el)
+		{
+		    if (! isset($result["$el->categoryID"]))
+		    {
+		        $result["$el->categoryID"] = array();
+		    }
+		    
+		    $result["$el->categoryID"]["$el->subcategoryID"] = 
+		       $el->subcategory;
+		}
 		
+		return $result;
 	}
 }
