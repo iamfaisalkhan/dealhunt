@@ -1,7 +1,20 @@
 <?php
 
 class Deals_model extends CI_Model {
-  
+	
+	function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->database();
+	}
+	
+	// Insert deals to deals table. 
+	public function add_deals($deals)
+	{
+			
+	}  
+	
     public function fetch_by_zip($zip=53705)
     {
 

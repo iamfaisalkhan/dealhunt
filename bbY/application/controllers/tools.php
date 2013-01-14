@@ -1,13 +1,51 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Tools extends CI_Controller {
+   
+	function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->model('Eight_coupons_model');
+		$this->config->load('bby_config.php');
+		
+		// Load the database.
+		$this->load->database();
+	}
+	
+	public function deals($category="", $page="1")
+	{
+		$deals = $this->Eight_coupons_model->getrealtimeproductdeals($category, $page);
+		if ($deals == FALSE) return;
+		
+		foreach ($deals as $deal)
+		{
+			print $deal['dealTitle'];
+			print " ";
+			print $deal['dealSource'];
+			print "<br>";
+		}
+		
+	}
+	
+	public function chain_stores()
+	{
+		
+		$stores = $this->Eight_coupons_model->getchainstorelist();
+		if ($stores == FALSE) return;
 
-  public function build_categories()
+		foreach($stores as $store)
+		{
+			$this->db->insert('store_chains', $store);
+		}
+		
+	}
+	
+    public function build_categories()
 	{
 	    
-		$this->load->model('Eight_coupons_model');
-		$categories = $this->Eight_coupons_model->get_all_categories();
-		$sub_categories = $this->Eight_coupons_model->get_all_subcategories();
+		$categories = $this->Eight_coupons_model->getcategory();
+		$sub_categories = $this->Eight_coupons_model->getcategory();
 		
 		if ($categories == FALSE || $sub_categories == FALSE)
 		{
@@ -15,13 +53,8 @@ class Tools extends CI_Controller {
 		    return;
 		}
 		
-		// Load the database.
-		$this->load->database();
 		
 		$this->add_categories($categories, $sub_categories);
-		
-		//$this->db->get('category');
-		
 		
 	}
 	
