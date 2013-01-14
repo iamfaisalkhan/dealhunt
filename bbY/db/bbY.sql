@@ -17,3 +17,25 @@ CREATE TABLE IF NOT EXISTS sub_category (
    PRIMARY KEY(id)
 );
 
+CREATE TABLE IF NOT EXISTS store_chains (
+    id INT NOT NULL AUTO_INCREMENT,
+    eight_coupon_id INT NOT NULL,
+    name varchar(255),
+    page varchar(255),
+    home_page varchar(255),
+    logo_small varchar(255),
+    logo_big varchar(255),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS deals (
+    id INT NOT NULL AUTO_INCREMENT,
+    source_id INT,
+    source_name varchar(255),
+    txt TEXT,
+    url varchar(255),
+    image varchar(255),
+    date_posted DATETIME,
+    date_expired DATETIME,
+    PRIMARY KEY(id)
+);
