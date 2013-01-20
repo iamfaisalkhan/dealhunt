@@ -39,3 +39,9 @@ CREATE TABLE IF NOT EXISTS deals (
     date_expired DATETIME,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE IF NOT EXISTS products (
+    id INT NOT NULL AUTO_INCREMENT,
+    name varchar(255),
+    PRIMARY KEY(id)
+);
