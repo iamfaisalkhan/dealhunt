@@ -37,4 +37,23 @@ class User extends CI_Controller {
       redirect("/user/index");
       
    }
+   
+   /**
+    * Delete the product from the model and redirect the user to index page.
+    * @param unknown $id
+    */
+   public function del($id=NULL)
+   {
+      
+      //TODO: If database query returns in error, set an error message
+      // flag for the view to show it to the user.
+      
+      if ($id != NULL)
+      {
+         $this->Products_model->remove($id);    
+      }
+      
+      redirect("/user/index");
+      
+   }
 }

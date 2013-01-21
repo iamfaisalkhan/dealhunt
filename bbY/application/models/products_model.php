@@ -52,9 +52,13 @@ class Products_model extends CI_Model
     * 
     * @param  $id Unique identifier of the product to remove
     */
-   public function revmoe($id)
+   public function remove($id = NULL)
    {
+      if ($id == NULL) return;
       
+      $this->db->delete($this->tablename, array("id" => $id));
+      
+      return $this->db->affected_rows();
       
    }
    
