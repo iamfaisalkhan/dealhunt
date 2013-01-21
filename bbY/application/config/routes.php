@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "deals/zip";
+$route['default_controller'] = "user/index";
 $route['404_override'] = '';
 
 
