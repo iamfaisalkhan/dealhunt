@@ -1,5 +1,5 @@
 <div class="container">
- <div class="row-fluid">
+ <div class="row">
   <div class="span2">
    <!--  Sidebar -->
   </div>
@@ -18,8 +18,9 @@
      <?php foreach ($products as $product):?>
      <tr>
       <td><?php echo $product->name?> </td>
-      <td style="text-align: right;"><a href="<?php echo base_url()?>/user/edit/<?php echo $product->id?>"><i class="icon-pencil"></i></a> 
-          &nbsp;
+      <td style="text-align: right;">
+         <!--<a href="<?php echo base_url()?>/user/edit/<?php echo $product->id?>"><i class="icon-pencil"></i></a> 
+          &nbsp;-->
           <a href="<?php echo base_url()?>/user/del/<?php echo $product->id?>"><i class="icon-trash"></i> </a>
       </td>
      </tr>
@@ -28,7 +29,8 @@
      <!--  if the prodcts list was empty -->
      <?php if (count($products) == 0) : ?>
      <tr>
-      <td colspan="2"><small>Add your favourite itesm to get great offers</small></td>
+      <td colspan="2" center
+      ><small>Add your favourite itesm to get great offers</small></td>
      </tr>
      <?php endif;?>
      <!--  for display an extra line at the end of the table. -->
