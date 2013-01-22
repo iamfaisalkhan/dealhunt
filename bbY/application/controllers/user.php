@@ -33,9 +33,14 @@ class User extends CI_Controller {
    
    public function add()
    {
-      if ($this->input->post('item') != FALSE)
+      $item = $this->input->post('item', TRUE);
+      if ($item != FALSE)
       {
-         $this->Products_model->add($this->input->post('item'));
+         $clean = strip_tags($item);
+         if (! empty($clean))
+         {
+            $this->Products_model->add($clean);
+         }
       }
       
       redirect("/user/index");
