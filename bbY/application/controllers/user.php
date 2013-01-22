@@ -9,6 +9,7 @@ class User extends CI_Controller {
       // For calling function like base_url
       $this->load->helper('url');
       $this->load->model('Products_model');
+      $this->load->model('Deals_model');
    }
 
    public function index()
@@ -18,6 +19,9 @@ class User extends CI_Controller {
       
       $products = $this->Products_model->get();
       $data['products'] = $products;
+      
+      $deals = $this->Deals_model->get();
+      $data['deals'] = $deals;
       
       // Load the associate view. 
       $this->load->view("user/user_view", $data);
