@@ -14,6 +14,8 @@ class Deals_model extends CI_Model {
     */
    public function get($limit = 25)
    {
+      // Sort deals by most recent
+      $this->db->order_by('source_id', "DESC");
       $query = $this->db->get("deals", $limit);
       return $query->result();
    }
