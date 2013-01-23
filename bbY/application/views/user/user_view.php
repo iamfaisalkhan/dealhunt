@@ -7,37 +7,38 @@
 
   <div class="span10">
    <!--  Body  -->
-
+   
    <div class="row">
-    <div class="span8">
-     <table class="table">
-      <tr>
+   
+   <div class="span8">
+     <div class="row">
        <?php $count = 0;?>
        <?php foreach ($deals as $deal):?>
-       <td style="border: none;">
-         <div class="span10 wrap">
-          <a href="<?php echo $deal->url;?>">
-           <img src="<?php echo $deal->image?>" class="img-polaroid">
-          </a>
-          <div class="span10">
-          <?php echo trim($deal->txt);?>
-          </div>
-         </div>
-       </td>
+       <div class="span3">
+         <a href="<?php echo $deal->url;?>">
+          <img style="width : 100%; height: auto;" src="<?php echo $deal->image?>" class="img-polaroid">
+         </a>
+         <?php echo trim($deal->txt);?>
+         <p></p>
+       </div>
        <?php $count = $count + 1;?>
        <?php if ( ($count % 4) == 0):?>
-      </tr>
-      <!-- Start a new row, if there are still more elements -->
-      <?php if (count($deals) > $count):?>
-      <tr>
-      <?php endif;?>
+       </div>
+       <!-- Start a new row, if there are still more elements -->
+       <?php if (count($deals) > $count):?>
+       <div class="row">
+       <?php endif;?>
       
-      <?php endif;?>
-
+       <?php endif;?>
        <?php endforeach;?>
      
-     </table>
-    </div>
+       <!--  At the end of the foreach, if we didn't close the div close it! -->
+       <?php if ( ($count % 4) != 0):?>
+         </div>
+       <?php endif;?>
+   </div> <!--  span8 -->
+      
+      
     <div class="span2">
      <form class="form-inline"
       action="<?php echo base_url();?>/index.php/user/add" method="post">
@@ -73,12 +74,14 @@
         <td colspan="2"></td>
        </tr>
       </table>
+    </div> <!--  span2 last column -->
     
-    </div>
-   </div>
-  </div>
-  <!-- span10 side bar -->
-
- </div>
-</div>
-<!-- /container -->
+    <div class="span2"><!--  empty column --></div>
+    
+    
+  </div> <!--  Inner row -->
+  
+ </div>   <!-- span10 side bar -->
+ 
+</div> <!--  top row -->
+</div> <!-- /container -->
