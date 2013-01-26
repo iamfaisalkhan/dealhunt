@@ -11,11 +11,18 @@
       <p class="lead">
       Start by following a quick sign-up using your favourite way below and in
       no time you will be saving money!.
-      </p> 
+      </p>
       <p>
-         <a href="<?php echo $login_url;?>">
-          <img alt="login" src="<?php echo base_url();?>assets/img/facebook-signin.png">
-         </a>
+          <?php if (@$user_profile): ?>
+        <pre>
+            <?php echo print_r($user_profile, TRUE) ?>
+        </pre>
+        <a href="<?php echo $logout_url ?>">Logout of this thing</a>
+        <?php else: ?>
+          <a href="<?php echo $login_url;?>">
+            <img alt="login" src="<?php echo base_url();?>assets/img/facebook-signin.png">
+          </a>
+        <?php endif; ?> 
       </p>
    </div>
  </div>
