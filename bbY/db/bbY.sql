@@ -45,3 +45,16 @@ CREATE TABLE IF NOT EXISTS products (
     name varchar(255),
     PRIMARY KEY(id)
 );
+
+CREATE TABLE IF NOT EXISTS categories (
+	id INT NOT NULL AUTO_INCREMENT,
+	name varchar(255),
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS items (
+	id INT NOT NULL AUTO_INCREMENT,
+	category_id INT NOT NULL,
+	name varchar(255),
+	PRIMARY KEY(id)
+);
