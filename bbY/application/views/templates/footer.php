@@ -15,7 +15,9 @@
     <script src="<?php echo base_url();?>assets/js/bootstrap-collapse.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap-carousel.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap-typeahead.js"></script>
-    
+    <script src="<?php echo base_url();?>assets/js/budget-buy.js"></script>
+    <script src="<?php echo base_url();?>assets/js/holder.js"></script>
+    <script src="<?php echo base_url();?>assets/js/imgscale.jquery.min.js"></script>
   </head>
 
   <body>
