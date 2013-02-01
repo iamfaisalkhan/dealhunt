@@ -4,6 +4,15 @@ $(function() {
         var item_id = $(this).attr('id');
         enableEditBox($(this).parent().parent(), item_id);
     });
+    
+    $('#signup-email').click(function(){
+        $('#login_dialog').modal();
+    });
+    
+    $('#new_user').click(function() {
+        alert('You got it!');
+        return false;
+    });
 }); 
 
 function enableEditBox(item, item_id) {
