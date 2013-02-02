@@ -29,21 +29,19 @@
     </div> <!-- span3-->
     
     <div class="span9">
-    
     <ul class="thumbnails">
       <?php foreach ($deals as $deal):?>
       <li class="span3">
-        <div class="thumbnail">
-          <img class="deal_img" src="<?php echo $deal->image?>">
+        <div class="thumbnail fixed-height">
+          <!-- <img class="deal_img" data-src="<?php echo base_url()?>assets/js/holder.js/300x200">-->
+          <img style="width:300px; height:200px;" class="deal_img" src="<?php echo $deal->image;?>">
           <h3></h3>
-          <p> <?php echo $deal->txt?> </p>
+          <span><?php echo $deal->txt?></span>
         </div>
       </li>
       <?php endforeach;?>
     </ul>
-    
     </div> <!--  Last Column -->
-    
    </div> <!--  Top row -->
 </div> <!-- /container -->
 

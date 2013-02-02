@@ -3,3 +3,7 @@ input[type="text"],
 	margin-left: -3px;
 	margin-bottom: -10px;
 }
+
+.fixed-height {
+   height: 310px;
+}

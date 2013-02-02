@@ -26,8 +26,36 @@
             <img alt="login" src="<?php echo base_url();?>assets/img/email-signup.png">
           </a>
           </div>
+          
        </div>
         
+   </div>
+   
+   <div class="span4">
+   <!--  Login Form -->
+    <form class="form-horizontal">
+    <!--  Email -->
+    <div class="control-group">
+     <label class="control-label" for="inputEmail">Email</label>
+     <div class="controls">
+       <input type="text" id="inputEmail" placeholder="Email">
+     </div>
+   </div>
+   
+   <!--  Password -->
+   <div class="control-group">
+     <label class="control-label" for="inputPassword">Password</label>
+     <div class="controls">
+       <input type="password" id="inputPassword" placeholder="Password">
+     </div>
+   </div>
+   <div class="control-group">
+     <div class="controls">
+       <button id="new_user" type="submit" class="btn">Sign-in</button>
+     </div>
+   </div>
+   
+   </form> <!--  Login form end -->
    </div>
  </div>
  </div> <!--  row -->
@@ -69,7 +97,7 @@
    
    <div class="control-group">
      <div class="controls">
-       <button id="new_user" type="submit" class="btn">Sing-up</button>
+       <button id="new_user" type="submit" class="btn">Sign-Up</button>
      </div>
    </div>
    
