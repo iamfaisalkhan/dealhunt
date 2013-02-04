@@ -223,7 +223,7 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Verdana, Tahoma, Geneva, sans-serif
   font-size: 14px;
   line-height: 20px;
   color: #333333;
@@ -5996,7 +5996,7 @@ a.badge:hover {
   font-weight: 200;
   line-height: 30px;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #87A4E6;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
