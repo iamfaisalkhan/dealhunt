@@ -11,7 +11,7 @@ class User extends CI_Controller {
       $this->load->model('Products_model');
       $this->load->model('Deals_model');
    }
-
+   
    public function index()
    {
       
@@ -30,6 +30,34 @@ class User extends CI_Controller {
       $this->load->view("templates/footer", $data);
    }
   
+   /**
+    * Check if the user_email already exists in the database. 
+    */
+   public function check_email_ajax()
+   {
+      
+      $email = $this->input->get('user_email', TRUE);
+      $this->db->where('email', $email);
+      $cnt = $this->db->count_all_results('user');
+      
+      if ($cnt == 0) 
+      {
+         // email is valid
+         $ret = array('status' => 1);
+         $this->output->set_output(json_encode($ret));
+      }
+      
+   }
+   
+   /**
+    * Called when user fully registers the 
+    */
+   public function register_ajax()
+   {  
+      $ret = $this->input->post();
+      var_dump($ret);
+      //$this->output->set_output(json_encode($ret));
+   }
    
    public function add()
    {

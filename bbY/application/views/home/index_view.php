@@ -30,52 +30,34 @@
        </div>
         
    </div>
-   
-   <div class="span4">
-   <!--  Login Form -->
-    <form class="form-horizontal">
-    <!--  Email -->
-    <div class="control-group">
-     <label class="control-label" for="inputEmail">Email</label>
-     <div class="controls">
-       <input type="text" id="inputEmail" placeholder="Email">
-     </div>
-   </div>
-   
-   <!--  Password -->
-   <div class="control-group">
-     <label class="control-label" for="inputPassword">Password</label>
-     <div class="controls">
-       <input type="password" id="inputPassword" placeholder="Password">
-     </div>
-   </div>
-   <div class="control-group">
-     <div class="controls">
-       <button id="new_user" type="submit" class="btn">Sign-in</button>
-     </div>
-   </div>
-   
-   </form> <!--  Login form end -->
-   </div>
  </div>
  </div> <!--  row -->
 </div> <!-- /container -->
 
+<!--  New User Registration dialog -->
 <div id="login_dialog" class="modal hide fade" tabindex="-1" 
    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   
    <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-     <h3>New User</h3>
+     <p style="font-weight: bold"><strong>New user sign up</strong></p>
    </div>
    
    <div class="modal-body">
-   <form class="form-horizontal">
+    <!-- Alert area for the form -->
+    <div id="long_form_alert" class="alert alert-error hide"></div>
+   
+   <form class="form-horizontal" id="login_form">
+   <div class="control-group">
+     <label class="control-label" for="inputName">Name</label>
+     <div class="controls">
+       <input type="text" name="user_name" id="inputName" placeholder="Name">
+     </div>
+   </div>
    <!--  Email -->
    <div class="control-group">
      <label class="control-label" for="inputEmail">Email</label>
      <div class="controls">
-       <input type="text" id="inputEmail" placeholder="Email">
+       <input type="text" name="email" id="inputEmail" placeholder="Email">
      </div>
    </div>
    
@@ -83,7 +65,7 @@
    <div class="control-group">
      <label class="control-label" for="inputPassword">Password</label>
      <div class="controls">
-       <input type="password" id="inputPassword" placeholder="Password">
+       <input type="password" name="pass" id="inputPassword" placeholder="Password">
      </div>
    </div>
    
@@ -91,13 +73,13 @@
    <div class="control-group">
      <label class="control-label" for="inputPassword2">Confirm Password</label>
      <div class="controls">
-       <input type="password" id="inputPassword2" placeholder="Retype Password">
+       <input type="password" name="pass_again" id="inputPassword2" placeholder="Retype Password">
      </div>
    </div>
    
    <div class="control-group">
      <div class="controls">
-       <button id="new_user" type="submit" class="btn">Sign-Up</button>
+       <button id="submit_login_form" type="submit" class="btn btn-success">Register</button>
      </div>
    </div>
    

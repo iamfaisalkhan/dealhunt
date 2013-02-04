@@ -1,6 +1,21 @@
 
 use bbY;
 
+CREATE TABLE IF NOT EXISTS user (
+   id INT NOT NULL AUTO_INCREMENT,
+   email varchar(50),
+   secret varchar(50),
+   name varchar(250),
+   gender varchar(1),
+   facebook_id INT,
+   twitter_id INT,
+   date_joined DATETIME,
+   last_login DATETIME,
+   verified TINYINT default 0,
+   facebook_connect TINYINT default 0,
+   PRIMARY_KEY(id)
+);
+
 
 CREATE TABLE IF NOT EXISTS category (
    id INT NOT NULL AUTO_INCREMENT,

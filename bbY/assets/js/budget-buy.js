@@ -9,9 +9,33 @@ $(function() {
         $('#login_dialog').modal();
     });
     
-    $('#new_user').click(function() {
-        alert('You got it!');
+    $('#submit_login_form').click(function(event) {
+        event.preventDefault();
+        formData = $('#login_form').serialize();
+        var data=data
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost/bbY/user/register_ajax',
+            cache : false,
+            data: formData,
+            success : function(html) {
+                alert(html);
+                $('#long_form_alert').text("Sorry it was an error");
+                $('#long_form_alert').show();
+                // var response = JSON.parse(html);
+                // alert(response);
+            },
+            error : function(html) {
+                alert('It failed');
+            }
+
+        });
         return false;
+    });
+
+    $('#login_dialog').on('show', function() {
+        
+        
     });
 }); 
 
