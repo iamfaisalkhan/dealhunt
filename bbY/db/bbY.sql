@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS user (
    twitter_id INT,
    date_joined DATETIME,
    last_login DATETIME,
-   verified TINYINT default 0,
-   facebook_connect TINYINT default 0,
-   PRIMARY_KEY(id)
+   verified TINYINT,
+   facebook_connect TINYINT,
+   PRIMARY KEY(id)
 );
 
 

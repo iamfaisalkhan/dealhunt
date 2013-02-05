@@ -8,8 +8,8 @@ class User extends CI_Controller {
       
       // For calling function like base_url
       $this->load->helper('url');
-      $this->load->model('Products_model');
-      $this->load->model('Deals_model');
+      $this->load->model('User_model');
+
    }
    
    public function index()
@@ -29,34 +29,49 @@ class User extends CI_Controller {
       // Load the footer
       $this->load->view("templates/footer", $data);
    }
-  
-   /**
-    * Check if the user_email already exists in the database. 
-    */
-   public function check_email_ajax()
-   {
-      
-      $email = $this->input->get('user_email', TRUE);
-      $this->db->where('email', $email);
-      $cnt = $this->db->count_all_results('user');
-      
-      if ($cnt == 0) 
-      {
-         // email is valid
-         $ret = array('status' => 1);
-         $this->output->set_output(json_encode($ret));
-      }
-      
-   }
    
    /**
     * Called when user fully registers the 
     */
    public function register_ajax()
    {  
-      $ret = $this->input->post();
-      var_dump($ret);
-      //$this->output->set_output(json_encode($ret));
+
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('form_validation');
+
+      $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[1]|max_length[15]');
+      $this->form_validation->set_rules('password', 'Password', 'trim|required|matches[passwordconf]|min_length[6]|max_length[8]');
+      $this->form_validation->set_rules('passwordconf', 'Confirm Password', 'required');
+      $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+      $this->form_validation->set_error_delimiters('', '<br>');
+
+      $ret = array();
+      if ($this->form_validation->run() == FALSE)
+      {
+         $ret['status'] = 0;
+         $ret['error_msg'] = validation_errors();
+      } else {
+         // Check unique email
+         $email = set_value('email');
+         $username = set_value('username');
+
+         $exists = $this->User_model->check_user($email);
+
+         if ($exists == TRUE) {
+            $ret['status'] = 0;
+            $ret['error_msg'] = 'This email already exists. Please login or sign up with a different email address.';
+         } else {
+            // Try to register the user
+            $user = new stdClass();
+            $user->email = $email;
+            $user->name = $username;
+            $id = $this->User_model->new_user($user);
+            $ret['status'] = 1;
+            $ret['id'] = $id;
+         }
+      }
+      
+      $this->output->set_output(json_encode($ret));
    }
    
    public function add()

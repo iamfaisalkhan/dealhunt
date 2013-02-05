@@ -44,20 +44,21 @@
    
    <div class="modal-body">
     <!-- Alert area for the form -->
-    <div id="long_form_alert" class="alert alert-error hide"></div>
+    <div id="login_form_alert" class="alert alert-error hide">
+    </div>
    
    <form class="form-horizontal" id="login_form">
    <div class="control-group">
      <label class="control-label" for="inputName">Name</label>
      <div class="controls">
-       <input type="text" name="user_name" id="inputName" placeholder="Name">
+       <input type="text" name="username" value="faisal" id="inputName" placeholder="Name">
      </div>
    </div>
    <!--  Email -->
    <div class="control-group">
      <label class="control-label" for="inputEmail">Email</label>
      <div class="controls">
-       <input type="text" name="email" id="inputEmail" placeholder="Email">
+       <input type="text" name="email" value="faisal@g.com" id="inputEmail" placeholder="Email">
      </div>
    </div>
    
@@ -65,7 +66,8 @@
    <div class="control-group">
      <label class="control-label" for="inputPassword">Password</label>
      <div class="controls">
-       <input type="password" name="pass" id="inputPassword" placeholder="Password">
+       <input type="password" value="abc123$" name="password" id="inputPassword" placeholder="Password">
+       <label><small>between 6 and 8 characters</small>
      </div>
    </div>
    
@@ -73,7 +75,7 @@
    <div class="control-group">
      <label class="control-label" for="inputPassword2">Confirm Password</label>
      <div class="controls">
-       <input type="password" name="pass_again" id="inputPassword2" placeholder="Retype Password">
+       <input type="password" value="abc123$" name="passwordconf" id="inputPassword2" placeholder="Retype Password">
      </div>
    </div>
    
@@ -82,7 +84,6 @@
        <button id="submit_login_form" type="submit" class="btn btn-success">Register</button>
      </div>
    </div>
-   
    </form>
    </div>
    
