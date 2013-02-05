@@ -9,25 +9,31 @@ class User extends CI_Controller {
       // For calling function like base_url
       $this->load->helper('url');
       $this->load->model('User_model');
-
+      $this->load->model('Deals_model');
    }
    
-   public function index()
+   public function index($user_id = 0)
    {
-      
-      $this->load->view("templates/header");
-      
-      $products = $this->Products_model->get();
-      $data['products'] = $products;
-      
+
+      if ($this->my_usession->logged_in == FALSE)
+      {
+         redirect('home/index');
+      }
+
+      $user_id_session = $this->my_usession->userdata('user_id');
+
+      if ($user_id != $user_id_session) 
+      {
+         redirect('home/index');
+      }
+
       $deals = $this->Deals_model->get();
       $data['deals'] = $deals;
       
-      // Load the associate view. 
-      $this->load->view("user/user_view", $data);
-      
-      // Load the footer
-      $this->load->view("templates/footer", $data);
+      $this->load->view('templates/header');
+      $data['categories'] = array('Electronics', 'Resturant', 'Travel');
+      $this->load->view('items/items_view', $data);
+      $this->load->view('templates/footer');
    }
    
    /**
@@ -71,9 +77,9 @@ class User extends CI_Controller {
             $user->last_login = $user->date_joined;
             $id = $this->User_model->new_user($user);
             $ret['status'] = 1;
-            $ret['id'] = $id;
-            $sdata = array('username' => 'faisal');
-            $this->session->set_userdata($sdata);
+            $ret['id'] = 22;
+            $sdata = array('user_id' => $id);
+            $this->my_usession->set_userdata($sdata);
          }
       }
       
@@ -96,25 +102,6 @@ class User extends CI_Controller {
       
    }
    
-   /**
-    * Delete the product from the model and redirect the user to index page.
-    * @param unknown $id
-    */
-   public function del($id=NULL)
-   {
-      
-      //TODO: If database query returns in error, set an error message
-      // flag for the view to show it to the user.
-      
-      if ($id != NULL)
-      {
-         $this->Products_model->remove($id);    
-      }
-      
-      redirect("/user/index");
-      
-   }
-
    public function test($id=0)
    {
       $user = new stdClass();

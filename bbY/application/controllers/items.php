@@ -15,8 +15,7 @@ class Items extends CI_Controller {
    
    public function index() 
    {
-      var_dump($this->session->userdata('username'));
-
+      
       $deals = $this->Deals_model->get();
       $data['deals'] = $deals;
       

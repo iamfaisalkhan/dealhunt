@@ -31,11 +31,11 @@ $(function() {
                 } else {
                     $('#login_form_alert').html("");
                     $('#login_form_alert').hide();
-                    window.location.href="/bbY/items/index/";
+                    window.location.href = "/bbY/user/index/" + response.id;
                 }
             },
             error : function(html) {
-                alert(html);
+                console.log(html);
                 show_error();
             }
 
@@ -75,7 +75,7 @@ function enableEditBox(item, item_id) {
 function submitItem(value, item_id) {
     $.ajax({
         type: "GET",
-        url: "http://localhost/bbY/user/ajax_test",
+        url: "http://localhost/bbY/item/add_item",
         data: "elect_item=" + value,
         success: function(html) {
             try {
