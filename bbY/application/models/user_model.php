@@ -8,6 +8,7 @@ class User_model extends CI_Model
    { 
       $user = new stdClass;
       $this->load->database();
+      $this->tablename = 'user';
    }
    
    /**
@@ -25,18 +26,10 @@ class User_model extends CI_Model
       return TRUE;
    }
 
-   public function new_user($user)
-   {
-
-      $this->db->insert('user', $user);
-      return $this->db->insert_id();
-      
-   }
-   
-   private function generate_salt($max = 15) 
+   public function generate_salt($max = 15) 
    {
       $characterList = 
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*?";
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
       $i = 0;
       $salt = "";
       while ($i < $max) {
@@ -44,6 +37,33 @@ class User_model extends CI_Model
          $i++;
       }
       return $salt;
+   }
+
+   /**
+    * Query database to find a user matching the given email and password
+    */
+   public function get_verified_user($email, $password) {
+      $this->db->where('email', $email);
+      $query = $this->db->get($this->tablename);
+      $user = $query->row();
+
+      if (!$user) return FALSE;
+
+      // verify the password
+      $hashpasswd = crypt($password, $user->salt);
+
+      if ($hashpasswd == $user->secret) return $user->id;
+
+      return FALSE;
+
+   }
+
+   public function new_user($user)
+   {
+      $user->salt = $this->generate_salt(2);
+      $user->secret = crypt($user->secret, $user->salt);
+      $this->db->insert('user', $user);
+      return $this->db->insert_id();
    }
       
 }

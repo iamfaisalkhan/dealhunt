@@ -31,9 +31,11 @@ $(function() {
                 } else {
                     $('#login_form_alert').html("");
                     $('#login_form_alert').hide();
+                    window.location.href="/bbY/items/index/";
                 }
             },
             error : function(html) {
+                alert(html);
                 show_error();
             }
 
@@ -51,6 +53,7 @@ function show_error() {
     $('#login_form_alert').html("Our bad! Please try again in a short while. Thanks!");
     $('#login_form_alert').show();
 }
+
 function enableEditBox(item, item_id) {
      item.replaceWith(
            '<tr><td><p><input id="' + item_id + '" type="text" placeholder="Shopping Item" class="negative-margin"></p></td></tr>'

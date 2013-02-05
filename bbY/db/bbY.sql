@@ -5,14 +5,15 @@ CREATE TABLE IF NOT EXISTS user (
    id INT NOT NULL AUTO_INCREMENT,
    email varchar(50),
    secret varchar(50),
+   salt varchar(10),
    name varchar(250),
    gender varchar(1),
-   facebook_id INT,
-   twitter_id INT,
-   date_joined DATETIME,
-   last_login DATETIME,
-   verified TINYINT,
-   facebook_connect TINYINT,
+   facebook_id INT default 0,
+   twitter_id INT default 0,
+   date_joined TIMESTAMP default 0,
+   last_login TIMESTAMP default 0,
+   verified TINYINT default 0,
+   facebook_connect TINYINT default 0,
    PRIMARY KEY(id)
 );
 

@@ -54,6 +54,7 @@ class User extends CI_Controller {
          // Check unique email
          $email = set_value('email');
          $username = set_value('username');
+         $password = set_value('password');
 
          $exists = $this->User_model->check_user($email);
 
@@ -65,9 +66,14 @@ class User extends CI_Controller {
             $user = new stdClass();
             $user->email = $email;
             $user->name = $username;
+            $user->secret = $password;
+            $user->date_joined = gmdate("Y-m-d H:i:s", time());
+            $user->last_login = $user->date_joined;
             $id = $this->User_model->new_user($user);
             $ret['status'] = 1;
             $ret['id'] = $id;
+            $sdata = array('username' => 'faisal');
+            $this->session->set_userdata($sdata);
          }
       }
       
@@ -107,5 +113,20 @@ class User extends CI_Controller {
       
       redirect("/user/index");
       
+   }
+
+   public function test($id=0)
+   {
+      $user = new stdClass();
+      $user->name = "faisal";
+      $user->email = "faisal.nust@gmail.com";
+      $user->secret = "abc";
+      $user->salt = "8n";
+      var_dump(time());
+      $user->date_joined = gmdate("Y-m-d H:i:s", time());
+      $user->last_login = $user->date_joined;
+      $this->load->model("User_model");
+      $this->User_model->new_user($user);
+      // var_dump($this->User_model->get_verified_user($user->email, '\'));
    }
 }
