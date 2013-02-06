@@ -17,6 +17,12 @@ class Home extends CI_Controller
    
    public function index()
    {
+
+      if ($this->my_usession->logged_in == TRUE)
+      {
+         redirect('items/index/'. $this->my_usession->userdata('user_id'));
+      }
+
       $fb_config = array(
          'appId' => $this->config->item('fb_appID'),
          'secret' => $this->config->item('fb_secret')
