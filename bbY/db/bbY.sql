@@ -71,6 +71,15 @@ CREATE TABLE IF NOT EXISTS categories (
 CREATE TABLE IF NOT EXISTS items (
 	id INT NOT NULL AUTO_INCREMENT,
 	category_id INT NOT NULL,
-	name varchar(255),
+	title varchar(255),
+  date_created TIMESTAMP default 0,
+  date_modified TIMESTAMP default 0, 
 	PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS user_items (
+  id INT NOT NULL AUTO_INCREMENT,
+  item_id INT NOT NULL,
+  user_id INT NOT NULL,
+  PRIMARY KEY (id)
 );
