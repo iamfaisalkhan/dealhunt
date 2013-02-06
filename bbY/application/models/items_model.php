@@ -28,26 +28,24 @@ class Items_model extends CI_Model
     * @param $id if supplied, the method will only return that specific item.
     * @poaram $by_recnet If TRUE order results by most recent item
     */
-   public function get($id = FALSE, $by_recent = TRUE)
+   public function get_user_items($user = FALSE, $by_recent = TRUE)
    {
+
+      if ($user == FALSE) return FALSE;
+
       $result = array();
       
-      // Select everything
-      if ($id == FALSE)
-      {
-         if ($by_recent == TRUE)
-            $this->db->order_by("id", "desc");
+      $this->db->select('items.id', 'items.category_id', 
+          'items.title', 'user.user_id');
 
-         $query = $this->db->get($this->tablename);
+      if ($by_recent == TRUE)
+            $this->db->order_by("items.date_created", "desc");
+
+      $this->db->join('user_items', 'user_items.item_id = items.id');
+
+      $query = $this->db->get($this->tablename);
           
-         return $query->result();
-      }
-      
-      // Select where id=$id
-      $idnum = intval($id);
-      if ($idnum <= 0) return FALSE;
-      
-      $result = $this->db->get_where($this->$tablename, array('id' => $id));
+      return $query->result();
       
    }
    
