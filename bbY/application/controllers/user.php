@@ -10,6 +10,7 @@ class User extends CI_Controller {
       $this->load->helper('url');
       $this->load->model('User_model');
       $this->load->model('Deals_model');
+      $this->load->mode('Items_model');
    }
    
    public function index($user_id = 0)
@@ -29,9 +30,18 @@ class User extends CI_Controller {
 
       $deals = $this->Deals_model->get();
       $data['deals'] = $deals;
+
+      // Define categories, make sure that id of these
+      // categories matches the one in categories table. 
+      $categories = array();
+      $categories[] = arry("id" => 1, "title" => 'Electronics');
+      $categories[] = arry("id" => 2, "title" => 'Travel');
+      $categories[] = arry("id" => 3, "title" => 'Resturant');
+      $data['categories'] = $categories;
+
+      var_dump($this->Items_model->get_all_items());
       
       $this->load->view('templates/header');
-      $data['categories'] = array('Electronics', 'Resturant', 'Travel');
       $this->load->view('items/items_view', $data);
       $this->load->view('templates/footer');
    }
@@ -77,7 +87,7 @@ class User extends CI_Controller {
             $user->last_login = $user->date_joined;
             $id = $this->User_model->new_user($user);
             $ret['status'] = 1;
-            $ret['id'] = 22;
+            $ret['id'] = $id;
             $sdata = array('user_id' => $id);
             $this->my_usession->set_userdata($sdata);
          }

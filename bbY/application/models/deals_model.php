@@ -12,7 +12,7 @@ class Deals_model extends CI_Model {
     * Get upto limit number of deals from the database. 
     * @param number $limit
     */
-   public function get($limit = 25)
+   public function get($limit = 24)
    {
       // Sort deals by most recent
       $this->db->order_by('source_id', "DESC");
