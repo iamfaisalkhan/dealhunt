@@ -50,7 +50,7 @@ class User extends CI_Controller {
       $categories = array();
       $categories[] = array('id' => 1, 'title' => 'Electronics');
       $categories[] = array('id' => 2, 'title' => 'Travel');
-      $categories[] = array('id' => 3, 'title' => 'Resturant');
+      $categories[] = array('id' => 3, 'title' => 'Restaurants');
       $data['categories'] = $categories;
 
       $items = $this->Items_model->get_user_items($user_id, FALSE);

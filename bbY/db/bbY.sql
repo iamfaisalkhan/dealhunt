@@ -86,5 +86,5 @@ CREATE TABLE IF NOT EXISTS user_items (
 
 INSERT INTO categories(id, name) values(1, "Electronics");
 INSERT INTO categories(id, name) values(2, "Travel");
-INSERT INTO categories(id, name) values(3, "Resturant");
+INSERT INTO categories(id, name) values(3, "Restaurants");
 
