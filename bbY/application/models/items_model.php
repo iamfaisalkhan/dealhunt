@@ -14,13 +14,26 @@ class Items_model extends CI_Model
     * 
     * @param unknown $name
     */
-   public function add($name)
+   public function add($user, $category, $item)
    {
       
-      $data = array('category_id' => 1,
-                    'name' => $name);
+      $datetime = gmdate("Y-m-d H:i:s", time());
+
+      $data = array('category_id' => $category,
+                    'title' => $item,
+                    'date_created' => $datetime,
+                    'date_modified' => $datetime);
       
       $this->db->insert($this->tablename, $data);
+      
+      $item_id = $this->db->insert_id();
+
+      $data = array('item_id' => $item_id,
+                     'user_id' => $user);
+      $this->db->insert('user_items', $data);
+
+      return $item_id;
+
    }
    
    /**
@@ -35,15 +48,19 @@ class Items_model extends CI_Model
 
       $result = array();
       
-      $this->db->select('items.id', 'items.category_id', 
-          'items.title', 'user.user_id');
+      $this->db->select('items.id, items.category_id, 
+                         items.title');
+
+      $this->db->from($this->tablename);
+
+      $this->db->join('user_items', 'user_items.item_id = items.id');
+
+      $this->db->where('user_items.user_id', $user);
 
       if ($by_recent == TRUE)
             $this->db->order_by("items.date_created", "desc");
 
-      $this->db->join('user_items', 'user_items.item_id = items.id');
-
-      $query = $this->db->get($this->tablename);
+      $query = $this->db->get();
           
       return $query->result();
       

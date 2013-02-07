@@ -20,7 +20,7 @@ class Home extends CI_Controller
 
       if ($this->my_usession->logged_in == TRUE)
       {
-         redirect('items/index/'. $this->my_usession->userdata('user_id'));
+         redirect('user/index/'. $this->my_usession->userdata('user_id'));
       }
 
       $fb_config = array(

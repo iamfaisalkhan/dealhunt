@@ -10,23 +10,37 @@ class User extends CI_Controller {
       $this->load->helper('url');
       $this->load->model('User_model');
       $this->load->model('Deals_model');
-      $this->load->mode('Items_model');
+      $this->load->model('Items_model');
    }
    
    public function index($user_id = 0)
    {
 
+      //TODO check if user id doesn't exists first. 
+
       if ($this->my_usession->logged_in == FALSE)
       {
-         redirect('home/index');
+         // Taking down the registration for now. 
+         $user = new stdClass();
+         $user->email = "demo@demo.com";
+         $user->name = 'demo';
+         $user->secret = 'demo';
+         $user->date_joined = gmdate("Y-m-d H:i:s", time());
+         $user->last_login = $user->date_joined;
+         $id = $this->User_model->new_user($user);
+         $user_id = $id;
+         $sdata = array('user_id' => $id);
+         $this->my_usession->set_userdata($sdata);
+         //redirect('home/index');
+
+      } else {
+         $user_id = $this->my_usession->userdata('user_id');
       }
 
-      $user_id_session = $this->my_usession->userdata('user_id');
-
-      if ($user_id != $user_id_session) 
-      {
-         redirect('home/index');
-      }
+      // if ($user_id != $user_id_session) 
+      // {
+      //    redirect('home/index');
+      // }
 
       $deals = $this->Deals_model->get();
       $data['deals'] = $deals;
@@ -34,13 +48,14 @@ class User extends CI_Controller {
       // Define categories, make sure that id of these
       // categories matches the one in categories table. 
       $categories = array();
-      $categories[] = arry("id" => 1, "title" => 'Electronics');
-      $categories[] = arry("id" => 2, "title" => 'Travel');
-      $categories[] = arry("id" => 3, "title" => 'Resturant');
+      $categories[] = array('id' => 1, 'title' => 'Electronics');
+      $categories[] = array('id' => 2, 'title' => 'Travel');
+      $categories[] = array('id' => 3, 'title' => 'Resturant');
       $data['categories'] = $categories;
 
-      var_dump($this->Items_model->get_all_items());
-      
+      $items = $this->Items_model->get_user_items($user_id, FALSE);
+      $data['items'] = $items;
+
       $this->load->view('templates/header');
       $this->load->view('items/items_view', $data);
       $this->load->view('templates/footer');

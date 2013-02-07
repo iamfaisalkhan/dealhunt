@@ -10,15 +10,20 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" 
-                 data-parent="#accordion2" href="#collapse<?php echo $category?>">
-              <?php echo $category?>
+                 data-parent="#accordion2" href="#collapse<?php echo $category['id']?>">
+              <?php echo $category['title']?>
             </a>
           </div>
-          <div id="collapse<?php echo $category?>" class="accordion-body collapse <?php if ($flag) echo "in"; $flag = false;?>">
+          <div id="collapse<?php echo $category['id']?>" class="accordion-body collapse in">
             <div class="accordion-inner">
               <table>
-                <tr><td> Test Item </td></tr>
-                <tr><td> <a href="#" id="<?php echo $category?>" class="add_item">
+                <?php foreach($items as $item):?>
+                <!-- TODO: Index items based on the categories -->
+                <?php if ($item->category_id == $category['id']): ?>
+                <tr><td> <?php echo $item->title;?> </td></tr>
+            <?php endif;?>
+            <?php endforeach; ?>
+                <tr><td> <a href="#" id="<?php echo $category['id']?>" class="add_item">
                       <i class="icon-plus-sign"> </i><em> add </em> </a></td></tr>
               </table>
             </div>

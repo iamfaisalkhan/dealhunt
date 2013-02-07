@@ -75,8 +75,8 @@ function enableEditBox(item, item_id) {
 function submitItem(value, item_id) {
     $.ajax({
         type: "GET",
-        url: "http://localhost/bbY/item/add_item",
-        data: "elect_item=" + value,
+        url: "http://localhost/bbY/items/add_ajax",
+        data: {id : item_id , item : value},
         success: function(html) {
             try {
                 var response = JSON.parse(html);
@@ -84,7 +84,10 @@ function submitItem(value, item_id) {
                 $('#message').css('visibility', 'visible');
                 return false;
             }
-            if (response.status == 1) {
+            if (response.redirect) {
+                window.location.href = response.redirect;
+            }
+            else if(response.status == 1) {
                 // Get the parent TD element. 
                 var td_el = $('#' + item_id).parent().parent().parent();
                 td_el.replaceWith(
@@ -105,7 +108,7 @@ function submitItem(value, item_id) {
         	}
 
         },
-        error: function() {
+        error: function(html) {
         	$('#message').css('visibility', 'visible');
         }
     });
