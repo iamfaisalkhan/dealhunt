@@ -19,6 +19,20 @@ class Deals_model extends CI_Model {
       $query = $this->db->get("deals", $limit);
       return $query->result();
    }
+
+   public function get_alL()
+   {
+
+      $this->db->select('id, source_name as source, txt as description, date_posted, date_expired');
+      $query = $this->db->get("deals");
+
+      $this->load->dbutil();
+      $delimiter = ",";
+      $newline = "\n";
+      
+      return $this->dbutil->csv_from_result($query, $delimiter, $newline);
+
+   }
 }
 
 ?>

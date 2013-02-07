@@ -65,6 +65,24 @@ class Items_model extends CI_Model
       return $query->result();
       
    }
+
+   public function get_all_items()
+   {
+
+      $this->db->select('items.id, user_items.user_id, categories.name as category, 
+                         items.title as item');
+      $this->db->from($this->tablename);
+      $this->db->join('user_items', 'user_items.item_id = items.id');
+      $this->db->join('categories', 'items.category_id=categories.id');
+      $query = $this->db->get();
+      
+      $this->load->dbutil();
+      $delimiter = ",";
+      $newline = "\n";
+      
+      return $this->dbutil->csv_from_result($query, $delimiter, $newline);
+
+   }
    
    /**
     * 

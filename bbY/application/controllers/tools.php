@@ -65,6 +65,19 @@ class Tools extends CI_Controller {
 
    }
 
+   public function user_items()
+   {
+      $this->load->model('Items_model');
+      $items = $this->Items_model->get_all_items();
+      echo $items;
+   }
+
+   public function deals()
+   {
+      $this->load->model('Deals_model');
+      echo $this->Deals_model->get_all();
+   }
+
    private function add_categories($categories, $sub_categories)
    {
       // Delete existing categories using ids
