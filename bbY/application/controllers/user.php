@@ -58,7 +58,8 @@ class User extends CI_Controller {
       $categories[] = array('id' => 8, 'title' => 'Software');
       $categories[] = array('id' => 9, 'title' => 'Groceries');
       $categories[] = array('id' => 10, 'title' => 'Beauty & Spa');
-      $categories[] = array('id' => 11, 'title' => 'Clothing and Apparels');
+      $categories[] = array('id' => 11, 'title' => 'Clothing, Accessories and Apparels');
+      $categories[] = array('id' => 11, 'title' => 'Jewellery');
 
       $data['categories'] = $categories;
 
