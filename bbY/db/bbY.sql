@@ -87,4 +87,11 @@ CREATE TABLE IF NOT EXISTS user_items (
 INSERT INTO categories(id, name) values(1, "Electronics");
 INSERT INTO categories(id, name) values(2, "Travel");
 INSERT INTO categories(id, name) values(3, "Restaurants");
+INSERT INTO categories(id, name) values(4, "Shopping");
+INSERT INTO categories(id, name) values(5, "Entertainment");
+INSERT INTO categories(id, name) values(6, "Outdoor Activities");
+INSERT INTO categories(id, name) values(7, "Services");
+INSERT INTO categories(id, name) values(8, "Restaurants");
+INSERT INTO categories(id, name) values(9, "Software");
+
 
