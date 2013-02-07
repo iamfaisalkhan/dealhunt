@@ -14,7 +14,7 @@
               <?php echo $category['title']?>
             </a>
           </div>
-          <div id="collapse<?php echo $category['id']?>" class="accordion-body collapse in">
+          <div id="collapse<?php echo $category['id']?>" class="accordion-body collapse <?php if ($flag) echo "in"; $flag = false;?>">
             <div class="accordion-inner">
               <table>
                 <?php foreach($items as $item):?>

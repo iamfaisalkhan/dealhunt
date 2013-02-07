@@ -93,5 +93,8 @@ INSERT INTO categories(id, name) values(6, "Outdoor Activities");
 INSERT INTO categories(id, name) values(7, "Services");
 INSERT INTO categories(id, name) values(8, "Restaurants");
 INSERT INTO categories(id, name) values(9, "Software");
+INSERT INTO categories(id, name) values(10, "Beauty & Spa");
+INSERT INTO categories(id, name) values(11, "Clothing and Apparels");
+
 
 
