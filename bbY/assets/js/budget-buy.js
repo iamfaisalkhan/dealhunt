@@ -1,8 +1,16 @@
 $(function() {  
 
-    $('.add_item').click(function() {
-        var item_id = $(this).attr('id');
-        enableEditBox($(this).parent().parent(), item_id);
+    $('#item1').focus();
+    
+    $('.add_item').keydown(function(e) {
+        if (e.which == 13) 
+        {
+            var el = $(this).val();
+            if (! el) return;
+            item_id = $(this).attr('id');
+            submitItem(el, item_id);
+            return false;
+        }
     });
     
     $('#signup-email').click(function(){
@@ -54,24 +62,6 @@ function show_error() {
     $('#login_form_alert').show();
 }
 
-function enableEditBox(item, item_id) {
-     item.replaceWith(
-           '<tr><td><p><input id="' + item_id + '" type="text" placeholder="Shopping Item" class="negative-margin"></p></td></tr>'
-     );
-     $('#' + item_id).focus();
-     $('#' + item_id).on("keydown", function(e) {
-        if (e.which == 13) 
-        {
-            var el = $(this).val();
-            if (! el) return;
-            submitItem(el, item_id);
-
-            return false;
-        }
-
-    });
-}
-
 function submitItem(value, item_id) {
     $.ajax({
         type: "GET",
@@ -92,14 +82,22 @@ function submitItem(value, item_id) {
                 var td_el = $('#' + item_id).parent().parent().parent();
                 td_el.replaceWith(
                     '<tr><td>' + value + '</td></tr>' + 
-                    '<tr><td> <a href="#" id="' + item_id + '" class="add_item"><i class="icon-plus-sign"> </i><em> add.. </em> </a></td></tr>'
+                    '<tr><td><p><input id="' + item_id + '" type="text" placeholder="" class="add_item negative-margin"></p></td></tr>'
+
                 );
+                $('#' + item_id).focus();
 
-                $('.add_item').off('click');
+                $('.add_item').off('keydown');
 
-                $('.add_item').on('click', function() {
-                    var item_id = $(this).attr('id');
-                    enableEditBox($(this).parent().parent(), item_id);
+                $('.add_item').on('keydown', function(e) {
+                    if (e.which == 13) 
+                    {
+                        var el = $(this).val();
+                        if (! el) return;
+                        item_id = $(this).attr('id');
+                        submitItem(el, item_id);
+                        return false;
+                    }
                 });
             	
                 $('#message').css('visibility', 'hidden');

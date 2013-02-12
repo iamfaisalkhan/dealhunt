@@ -14,7 +14,7 @@
               <?php echo $category['title']?>
             </a>
           </div>
-          <div id="collapse<?php echo $category['id']?>" class="accordion-body collapse <?php if ($flag) echo "in"; $flag = false;?>">
+          <div id="collapse<?php echo $category['id']?>" class="accordion-body collapse in">
             <div class="accordion-inner">
               <table>
                 <?php foreach($items as $item):?>
@@ -23,8 +23,7 @@
                 <tr><td> <?php echo $item->title;?> </td></tr>
             <?php endif;?>
             <?php endforeach; ?>
-                <tr><td> <a href="#" id="<?php echo $category['id']?>" class="add_item">
-                      <i class="icon-plus-sign"> </i><em> add </em> </a></td></tr>
+                <tr><td><p><input id="item<?php echo $category['id']?>" type="text" placeholder="" class="add_item negative-margin"></p></td></tr>
               </table>
             </div>
           </div>
