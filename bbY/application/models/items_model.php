@@ -8,6 +8,23 @@ class Items_model extends CI_Model
       parent::__construct();
       $this->load->database();
       $this->tablename = "items";
+
+      // Define categories, make sure that id of these
+      // categories matches the one in categories table. 
+      $this->categories = array();
+      $this->categories[] = array('id' => 1, 'title' => 'Electronics');
+      $this->categories[] = array('id' => 2, 'title' => 'Travel');
+      $this->categories[] = array('id' => 3, 'title' => 'Restaurants');
+      $this->categories[] = array('id' => 4, 'title' => 'Shopping');
+      $this->categories[] = array('id' => 5, 'title' => 'Entertainment');
+      $this->categories[] = array('id' => 6, 'title' => 'Outdoor Activities');
+      $this->categories[] = array('id' => 7, 'title' => 'Services');
+      $this->categories[] = array('id' => 8, 'title' => 'Software');
+      $this->categories[] = array('id' => 9, 'title' => 'Groceries');
+      $this->categories[] = array('id' => 10, 'title' => 'Beauty & Spa');
+      $this->categories[] = array('id' => 11, 'title' => 'Clothing, Accessories and Apparels');
+      $this->categories[] = array('id' => 12, 'title' => 'Jewellery');
+
    }
    
    /**
@@ -97,18 +114,10 @@ class Items_model extends CI_Model
       return $this->db->affected_rows();
       
    }
-   
-   /**
-    * Modify the name of 
-    * 
-    * @param $id Unique identifier of the product
-    * @param $name Modified name
-    */
-   public function set($id, $name)
+
+   public function get_categories()
    {
-      
+      return $this->categories;
    }
-   
-   
    
 }

@@ -45,24 +45,7 @@ class User extends CI_Controller {
       $deals = $this->Deals_model->get();
       $data['deals'] = $deals;
 
-      // Define categories, make sure that id of these
-      // categories matches the one in categories table. 
-      $categories = array();
-      $categories[] = array('id' => 1, 'title' => 'Electronics');
-      $categories[] = array('id' => 2, 'title' => 'Travel');
-      $categories[] = array('id' => 3, 'title' => 'Restaurants');
-      $categories[] = array('id' => 4, 'title' => 'Shopping');
-      $categories[] = array('id' => 5, 'title' => 'Entertainment');
-      $categories[] = array('id' => 6, 'title' => 'Outdoor Activities');
-      $categories[] = array('id' => 7, 'title' => 'Services');
-      $categories[] = array('id' => 8, 'title' => 'Software');
-      $categories[] = array('id' => 9, 'title' => 'Groceries');
-      $categories[] = array('id' => 10, 'title' => 'Beauty & Spa');
-      $categories[] = array('id' => 11, 'title' => 'Clothing, Accessories and Apparels');
-      $categories[] = array('id' => 12, 'title' => 'Jewellery');
-
-      $data['categories'] = $categories;
-
+      $data['categories'] = $this->Items_model->get_categories();
       $items = $this->Items_model->get_user_items($user_id, FALSE);
       $data['items'] = $items;
 
