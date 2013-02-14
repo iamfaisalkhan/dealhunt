@@ -15,7 +15,8 @@ $(function() {
     
     $('#signup-email').click(function(){
         $('#login_form_alert').hide();
-        $('#login_dialog').modal();
+        // $('#login_dialog').modal();
+        $('#login_dialog_fb').modal();
     });
     
     $('#submit_login_form').click(function(event) {
