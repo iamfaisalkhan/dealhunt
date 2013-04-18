@@ -26,11 +26,14 @@ class Items extends CI_Controller {
 
       $item = $this->input->get('item', TRUE);
       $item_category = $this->input->get('id', TRUE);
-      
-      $this->Items_model->add($user_id, $item_category, $item);
+      $item_category_id = $item_category[strlen($item_category) - 1];
 
-      $ret = array("status" => 1,
-                   "item_id", );
+      if ($item_category_id) {
+         $this->Items_model->add($user_id, $item_category_id, $item);
+         $ret = array("status" => 1);
+      } else {
+         $ret = array("status" => 0);
+      }
 
       $this->output->set_output(json_encode($ret));
       

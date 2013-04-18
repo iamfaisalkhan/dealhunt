@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row">
   <div class="span8">
-     <h3> Welcome Super Shopper</h3>
+     <h3> Welcome Super Shopper!</h3>
      
       <p class="lead"> We bring best and focused savings that are customed to your needs.
       These deals are fetched, analysed and matched to your wish lists. The
@@ -14,9 +14,6 @@
       </p>
       <div class="row">
         <div class="span0">
-          <!--  <a href="<?php echo $login_url;?>">
-            <img alt="login" src="<?php echo base_url();?>assets/img/facebook-signup.png">
-          </a>-->
              <a id="abc" href="#">
                <img alt="login" src="<?php echo base_url();?>assets/img/facebook-signup.png">             
              </a>
@@ -33,6 +30,22 @@
  </div>
  </div> <!--  row -->
 </div> <!-- /container -->
+
+<!-- Facebook login Dialog -->
+<div id="login_dialog_fb" class="modal hide fade" tabindex="-1" 
+   role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <iframe src="https://www.facebook.com/plugins/registration?
+             client_id=<?php echo $appId?>&
+             redirect_uri=http://ec2-23-20-245-218.compute-1.amazonaws.com/bbY&
+             fields=name,birthday,gender,location,email"
+        scrolling="auto"
+        frameborder="no"
+        style="border:none"
+        allowTransparency="true"
+        width="100%"
+        height="330">
+  </iframe>
+ </div>
 
 <!--  New User Registration dialog -->
 <div id="login_dialog" class="modal hide fade" tabindex="-1" 

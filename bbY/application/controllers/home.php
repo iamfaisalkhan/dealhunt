@@ -28,6 +28,8 @@ class Home extends CI_Controller
          'secret' => $this->config->item('fb_secret')
       );  
       
+      $data['appId'] = $this->config->item('fb_appID');
+
       $this->load->library('facebook', $fb_config);
       
       $user = $this->facebook->getUser();
@@ -54,6 +56,7 @@ class Home extends CI_Controller
          $data['login_url'] = $this->facebook->getLoginUrl();
       }
       
+
       $this->load->view("templates/header");
       $this->load->view('home/index_view', $data);
       $this->load->view("templates/footer");
