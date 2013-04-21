@@ -7,10 +7,17 @@ class Tools extends CI_Controller {
       parent::__construct();
 
       $this->load->model('Eight_coupons_model');
+      $this->load->model('Semantics3_model');
       $this->config->load('bby_config.php');
 
       // Load the database.
       $this->load->database();
+   }
+
+   public function semantics3()
+   {
+
+      $this->Semantics3_model->search();
    }
 
    public function update_deals()
