@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 
-CREATE TABLE IF NOT EXISTS category (
+CREATE TABLE IF NOT EXISTS category_8coupon (
    id INT NOT NULL AUTO_INCREMENT,
    eight_coupon_id INT,
    title varchar(150),

@@ -9,5 +9,4 @@ class Manufacturere
    $name = "Unknown";
    $location = "Unknown";
    $categories = array();
-
 }

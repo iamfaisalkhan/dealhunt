@@ -14,6 +14,8 @@ class Product
 
    $manufacturer = new Manufacturer();
    $features = array();
+   $offers = array();
+   $stores = array();
    $url = new $URL();
    $category = array();
 
