@@ -8,7 +8,7 @@ class Tools extends CI_Controller {
 
       #$this->load->model('Eight_coupons_model');
       $this->load->model('Semantics3_model');
-     # $this->config->load('bby_config.php');
+      $this->config->load('bby_config.php');
 
       // Load the database.
       #$this->load->database();
@@ -89,7 +89,7 @@ class Tools extends CI_Controller {
    {
       // Delete existing categories using ids
       $this->db->where_in('eight_coupon_id', array_keys($categories));
-      $this->db->delete('category');
+      $this->db->delete('category_8coupon');
        
       // Insert all categories to the database
       foreach ($categories as $categoryId => $category)
