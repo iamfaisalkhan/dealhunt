@@ -2,7 +2,11 @@
 
 class URL
 {
-   id = 0;
-   url = "";
-   url_type = "Generic";
+   
+   function __construct() 
+   {
+      $id = 0;
+      $url = "";
+      $url_type = "Generic";
+   }
 }

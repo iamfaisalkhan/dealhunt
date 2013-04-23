@@ -2,6 +2,7 @@
 
 include_once(APPPATH.'libraries/oauth-php/library/OAuthStore.php');
 include_once(APPPATH.'libraries/oauth-php/library/OAuthRequester.php');
+include_once('include/Product.php');
 
 class Semantics3_model extends CI_Model {
 
@@ -31,14 +32,23 @@ class Semantics3_model extends CI_Model {
    {
 
       if ($txt == FALSE) return;
-
+      
+      $p = new Product();
+      $p->name = "test1";
+      $m = new Manufacturer();
+      $m->name = "test2";
+      $m->location = "usa";
+      $p->manufacturer = $m;
+      
       $url = $this->base_url.'products?q={"search":"'.$txt.'"}';
-      OAuthStore::instance("2Leg", $this->options );
-      $request = new OAuthRequester($url, 'GET', "");
-      $result = $request->doRequest();
-      $response = $result['body'];
 
-      return parse(json_decode($response));
+      
+//       OAuthStore::instance("2Leg", $this->options );
+//       $request = new OAuthRequester($url, 'GET', "");
+//       $result = $request->doRequest();
+//       $response = $result['body'];
+
+//       return parse(json_decode($response));
    }
 
 }

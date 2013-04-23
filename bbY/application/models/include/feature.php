@@ -2,8 +2,12 @@
 
 class Feature 
 {
-   $id = 0;
-   $feature = "Unknown";
-   $value = "Unknown";
+   
+   function __consturct() 
+   {
+      $id = 0;
+      $feature = "Unknown";
+      $value = "Unknown";
+   }
 
 }

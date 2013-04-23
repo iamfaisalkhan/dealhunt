@@ -2,11 +2,15 @@
 /**
  * A signle manufacturer
  */
-class Manufacturere
+class Manufacturer
 {
    
-   $id = 0;
-   $name = "Unknown";
-   $location = "Unknown";
-   $categories = array();
+   function __construct()
+   {
+      $id = 0;
+      $name = "Unknown";
+      $location = "Unknown";
+      $categories = array();
+   }
+
 }
