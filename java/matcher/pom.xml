@@ -10,6 +10,19 @@
  <name>matcher</name>
  <url>http://maven.apache.org</url>
 
+ <build>
+   <plugins>
+     <plugin>
+       <artifactId>maven-assembly-plugin</artifactId>
+       <configuration>
+         <descriptorRefs>
+           <descriptorRef>jar-with-dependencies</descriptorRef>
+         </descriptorRefs>
+       </configuration>
+     </plugin>
+   </plugins>
+ </build>  
+
  <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  </properties>
@@ -31,6 +44,11 @@
    <artifactId>gson</artifactId>
    <version>2.2.3</version>
    <scope>compile</scope>
+  </dependency>
+  <dependency>
+   <groupId>com.googlecode.json-simple</groupId>
+   <artifactId>json-simple</artifactId>
+   <version>1.1</version>
   </dependency>
  </dependencies>
 </project>
