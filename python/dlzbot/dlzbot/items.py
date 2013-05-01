@@ -5,10 +5,15 @@
 
 from scrapy.item import Item, Field
 
-class Deals2BuyItem(Item):
+class Deal(Item):
     # define the fields for your item here like:
+    source_id = Field()
     title = Field()
     date = Field()
     source = Field()
     expires = Field()
     price = Field()
+    deal_url = Field()
+    source_url = Field()
+    image = Field()
+

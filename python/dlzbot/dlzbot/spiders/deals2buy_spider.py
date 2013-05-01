@@ -1,7 +1,9 @@
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 
-from dlzbot.items import Deals2BuyItem
+from dlzbot.items import Deal
+
+import sys
 
 class Deals2BuySpider(BaseSpider):
    
@@ -27,25 +29,25 @@ class Deals2BuySpider(BaseSpider):
          d = datetime.now().strftime("%Y-%m-%d")
 
       for site in sites:
-         item = Deals2BuyItem()
+         item = Deal()
 
          # Extract deal title, continue in case of exception, or empty title.  
          try:
-           t = site.select('.//a/span/text()').extract()[0].strip()
-           if (len(t) == 0):
-              continue
-           item['title'] = t
-           item['date'] = d
+            t = site.select('.//a/span/text()').extract()[0].strip()
+            if (len(t) == 0):
+               continue
+            item['title'] = t
+            item['date'] = d
          except: 
-           continue
+            continue
 
          # Extract other possible attributes about the deal, ignore in case of exception
          try:
-           item['source'] = site.select('h2/span/text()').extract()[0].strip()
-           item['expires'] = site.select('div[@class="expires"]/span/text()').extract()[0].strip()
-           item['price'] = site.select('.//strong[@class="yourprice"]/text()').extract()[0].strip()
+            item['source'] = site.select('h2/span/text()').extract()[0].strip()
+            item['expires'] = site.select('div[@class="expires"]/span/text()').extract()[0].strip()
+            item['price'] = site.select('.//strong[@class="yourprice"]/text()').extract()[0].strip()
          except:
-           pass #ignore
+            print "Failure to process deals2buy item ", sys.exc_info()[0]
 
          items.append(item)
 
