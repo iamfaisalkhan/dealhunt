@@ -13,6 +13,7 @@ class Deal(Item):
     source = Field()
     expires = Field()
     price = Field()
+    list_price = Field()
     deal_url = Field()
     source_url = Field()
     image = Field()

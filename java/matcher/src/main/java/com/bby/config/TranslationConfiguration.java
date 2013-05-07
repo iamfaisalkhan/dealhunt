@@ -34,12 +34,6 @@ public class TranslationConfiguration {
          prop.load(
             TranslationConfiguration.class.getClassLoader().getResourceAsStream(
                PROP_FILE));
-         
-         // print out the properties for debugging purposes.
-//         for (String key :  prop.stringPropertyNames()) {
-//            System.out.println(key + " => " + prop.getProperty(key));
-//         }
-         
       } catch (IOException ioe) {
       }
    }
@@ -58,7 +52,7 @@ public class TranslationConfiguration {
          if (key.startsWith(dealSource)) {
             String[] tkns = key.split("\\.");
             if (tkns.length < 1) continue;
-            translation.put(tkns[1], prop.getProperty(key));
+            translation.put(prop.getProperty(key), tkns[tkns.length-1]);
          }
       }
       

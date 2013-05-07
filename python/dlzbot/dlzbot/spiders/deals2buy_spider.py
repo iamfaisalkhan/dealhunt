@@ -44,7 +44,9 @@ class Deals2BuySpider(BaseSpider):
          # Extract other possible attributes about the deal, ignore in case of exception
          try:
             item['source'] = site.select('h2/span/text()').extract()[0].strip()
-            item['expires'] = site.select('div[@class="expires"]/span/text()').extract()[0].strip()
+            tmp = site.select('div[@class="expires"]/span/text()').extract()[0].strip()
+            tmp2 = tmp.split("/")
+            item['expires'] = "%s-%s-%s"%(tmp2[2], tmp2[0], tmp2[1])
             item['price'] = site.select('.//strong[@class="yourprice"]/text()').extract()[0].strip()
          except:
             print "Failure to process deals2buy item ", sys.exc_info()[0]
