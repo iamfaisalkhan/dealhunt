@@ -6,3 +6,5 @@ java/matcher/.classpath
 java/matcher/.project
 java/matcher/.settings
 java/matcher/target
+*.pyc
+*.mwb.bak
