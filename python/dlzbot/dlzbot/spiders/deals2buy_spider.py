@@ -51,7 +51,10 @@ class Deals2BuySpider(BaseSpider):
          # Extract other possible attributes about the deal, ignore in case of exception
          try:
             item['source'] = title_block.select('h2/span/text()').extract()[0].strip()
-            item['expires'] = title_block.select('div[@class="expires"]/span/text()').extract()[0].strip()
+            exp = title_block.select('div[@class="expires"]/span/text()').extract()[0].strip()
+            # Modify the date format equivalent to mysql date format 
+            tmp = exp.split("/")
+            item['expires'] = "%s-%s-%s"%(tmp[2], tmp[0], tmp[1]) 
             item['price'] = title_block.select('.//strong[@class="yourprice"]/text()').extract()[0].strip()
             # List price is little different, we obtin it from the main block 
             item['list_price'] = site.select('.//dd[@class="listprice"]/del/text()') .extract()[0].strip()
