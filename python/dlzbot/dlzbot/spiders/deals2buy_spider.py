@@ -16,7 +16,12 @@ class Deals2BuySpider(BaseSpider):
    def parse(self, response):
       hxs = HtmlXPathSelector(response)
       title = hxs.select('//title/text()')
-      sites = hxs.select('//div[@class="offer_title"]')
+      # The deals are grouped into list blocks with right and left elements
+      # The left block is for the price information and right block is
+      # for the detail titles. 
+      # Below, we select all the list items on the page. 
+      sites = hxs.select('//li[normalize-space(@class)="detail_view"]')
+      print " Len of deals " , len(sites)
 
       items = []
 
@@ -31,9 +36,11 @@ class Deals2BuySpider(BaseSpider):
       for site in sites:
          item = Deal()
 
+         # Now, from each list block, get the `
          # Extract deal title, continue in case of exception, or empty title.  
          try:
-            t = site.select('.//a/span/text()').extract()[0].strip()
+            title_block = site.select('.//div[@class="offer_title"]')
+            t = title_block.select('.//a/span/text()').extract()[0].strip()
             if (len(t) == 0):
                continue
             item['title'] = t
@@ -43,11 +50,11 @@ class Deals2BuySpider(BaseSpider):
 
          # Extract other possible attributes about the deal, ignore in case of exception
          try:
-            item['source'] = site.select('h2/span/text()').extract()[0].strip()
-            tmp = site.select('div[@class="expires"]/span/text()').extract()[0].strip()
-            tmp2 = tmp.split("/")
-            item['expires'] = "%s-%s-%s"%(tmp2[2], tmp2[0], tmp2[1])
-            item['price'] = site.select('.//strong[@class="yourprice"]/text()').extract()[0].strip()
+            item['source'] = title_block.select('h2/span/text()').extract()[0].strip()
+            item['expires'] = title_block.select('div[@class="expires"]/span/text()').extract()[0].strip()
+            item['price'] = title_block.select('.//strong[@class="yourprice"]/text()').extract()[0].strip()
+            # List price is little different, we obtin it from the main block 
+            item['list_price'] = site.select('.//dd[@class="listprice"]/del/text()') .extract()[0].strip()
          except:
             print "Failure to process deals2buy item ", sys.exc_info()[0]
 
