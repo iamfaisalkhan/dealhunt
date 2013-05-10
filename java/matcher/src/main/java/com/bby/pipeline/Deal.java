@@ -79,6 +79,4 @@ public class Deal {
       this.crawlSource = crawlSource;
    }
    
-   
-   
 }

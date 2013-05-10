@@ -79,7 +79,6 @@ public class DealFileSource {
             JSONObject obj = (JSONObject) jsonParser.parse(inLine);
             HashMap<String, String> mapping = translate.getTranslationMap(source);
             try {
-               System.out.println(mapping.get("title"));
                // TODO Don't use hard-coded keys
                d.setTitle((String)obj.get(mapping.get("title")));
                d.setDateAdded((String)obj.get(mapping.get("date_added")));
