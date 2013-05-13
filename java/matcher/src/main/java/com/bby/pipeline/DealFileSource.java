@@ -78,18 +78,27 @@ public class DealFileSource {
             logger.finest(inLine);
             JSONObject obj = (JSONObject) jsonParser.parse(inLine);
             HashMap<String, String> mapping = translate.getTranslationMap(source);
-            try {
-               System.out.println(mapping.get("title"));
-               // TODO Don't use hard-coded keys
-               d.setTitle((String)obj.get(mapping.get("title")));
-               d.setDateAdded((String)obj.get(mapping.get("date_added")));
-               d.setDealSource((String)obj.get(mapping.get("source")));
-               d.setDateExpires((String)obj.get(mapping.get("date_expires")));
-            } catch (Exception ex) {
-               //TODO: put debug statement
-               ex.printStackTrace();
-            } finally {}
-            
+            String localKey = "";
+            for (String s: mapping.keySet()) {
+               try {
+                  // TODO Don't use hard-coded keys
+                  localKey = mapping.get(s);
+                  if (localKey.equalsIgnoreCase("title")) 
+                     d.setTitle((String)obj.get(s));
+                  if (localKey.equalsIgnoreCase("date_added"))
+                     d.setDateAdded((String)obj.get(s));
+                  if (localKey.equalsIgnoreCase("source"))
+                     d.setDealSource((String)obj.get(s));
+                  if (localKey.equalsIgnoreCase("date_expires"))
+                     d.setDateExpires((String)obj.get(s));
+                  
+                  // TODO: add deal price
+                  // TODO: add deal list price
+               } catch (Exception ex) {
+                  //TODO: put debug statement
+                  ex.printStackTrace();
+               } finally {}
+            }
             persist.save(d);
             
          }

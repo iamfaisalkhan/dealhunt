@@ -52,7 +52,10 @@ public class TranslationConfiguration {
          if (key.startsWith(dealSource)) {
             String[] tkns = key.split("\\.");
             if (tkns.length < 1) continue;
-            translation.put(prop.getProperty(key), tkns[tkns.length-1]);
+            // The key is the attribute in external deal source, the value 
+            // corresponds to the local schema mapping. 
+            translation.put(tkns[tkns.length-1], prop.getProperty(key));
+            //translation.put(prop.getProperty(key), tkns[tkns.length-1]);
          }
       }
       
