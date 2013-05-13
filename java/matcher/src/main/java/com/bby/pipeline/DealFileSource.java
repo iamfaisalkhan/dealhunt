@@ -100,7 +100,6 @@ public class DealFileSource {
                } finally {}
             }
             persist.save(d);
-            
          }
       } catch (Exception e) {
          e.printStackTrace();
