@@ -27,6 +27,10 @@ public class CyclicHash {
 		hashvalue ^= hasher.hashvalues[c];
 		return hashvalue;
 	}
+    
+    public void reset() {
+       hashvalue = 0;
+    }
 	
 	// remove old character and add new one
 	// to get a strongly universal hash value, you have to ignore the last or first (n-1) bits.
